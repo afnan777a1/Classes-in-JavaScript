@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: rgb(33, 37, 41);
+
+        margin: 1;
+        padding: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100;
+        color: black;
+      }
+
+      .container {
+        background-color: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgb(0, 0, 0, 0.1);
+        text-align: center;
+        width: 500px;
+        box-sizing: border-box;
+      }
+
+      h2 {
+        color: black;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      p {
+        color: black;
+        font-size: 16px;
+        margin: 10px;
+      }
+
+      .vehicle-details {
+        font-weight: bold;
+        color: black;
+        font-size: 18px;
+        margin-bottom: 15px;
+        text-align: left;
+      }
+
+      .brand-name {
+        font-size: 20px;
+        color: rgb(41, 128, 185);
+        font-weight: bold;
+      }
+
+      .model-name {
+        font-size: 18px;
+        color: rgb(231, 76, 60);
+        margin-left: 20px;
+      }
+
+      #greetings {
+        font-size: 20px;
+        font-weight: bold;
+        color: rgb(41, 128, 185);
+      }
+
+      .greeting-message {
+        margin-top: 30px;
+        font-size: 20px;
+        color: rgb(231, 76, 60);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>JavaScript Class Inheritance and Static Method</h2>
+
+      <div id="vehicle-details"></div>
+
+      <p id="greetings"></p>
+      <p class="greeting-message">This is a greeting from the static method!</p>
+
+      <script>
+        class Vehicle {
+          constructor(brandname) {
+            this.brandname = brandname;
+          }
+
+          static hello() {
+            return "Hello!";
+          }
+
+          details() {
+            return `Brand Name: ${this.brandname}<br>`;
+          }
+        }
+
+        class Model extends Vehicle {
+          constructor(brandname, model) {
+            super(brandname);
+            this.model = model;
+          }
+
+          show() {
+            return `<div class="brand-name">${this.brandname}</div>
+                  <div class="model-name">Model: ${this.model}</div>`;
+          }
+        }
+
+        var vehicles = [
+          new Model("Ford Mustang", "GT 1969"),
+          new Model("Chevrolet Camaro", "ZL1 2020"),
+          new Model("Tesla Model S", "Plaid 2021"),
+          new Model("BMW M3", "Competition 2022"),
+          new Model("Audi R8", "V10 2021"),
+          new Model("Mercedes-Benz AMG", "GT 2020"),
+        ];
+
+        var vehicleDetailsDiv = document.getElementById("vehicle-details");
+        vehicles.forEach((vehicle) => {
+          vehicleDetailsDiv.innerHTML += `<div class="vehicle-details">${vehicle.show()}</div>`;
+        });
+
+        document.getElementById("greetings").innerHTML = Vehicle.hello();
+      </script>
+    </div>
+  </body>
+</html>
